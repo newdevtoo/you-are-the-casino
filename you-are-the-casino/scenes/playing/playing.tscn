@@ -20,27 +20,27 @@ theme_override_font_sizes/font_size = 60
 text = "money: 1000"
 
 [node name="slotsmac" type="Label" parent="labels"]
-offset_left = 333.0
-offset_top = 328.0
-offset_right = 887.0
-offset_bottom = 411.0
-theme_override_font_sizes/font_size = 60
+offset_left = 319.0
+offset_top = 353.0
+offset_right = 545.0
+offset_bottom = 395.0
+theme_override_font_sizes/font_size = 30
 text = "slotmachines: 2"
 
 [node name="pokertables" type="Label" parent="labels"]
 offset_left = 325.0
 offset_top = 172.0
-offset_right = 840.0
-offset_bottom = 255.0
-theme_override_font_sizes/font_size = 60
+offset_right = 531.0
+offset_bottom = 214.0
+theme_override_font_sizes/font_size = 30
 text = "pokertables: 1"
 
 [node name="dealers" type="Label" parent="labels"]
 offset_left = 328.0
 offset_top = 239.0
-offset_right = 711.0
-offset_bottom = 322.0
-theme_override_font_sizes/font_size = 60
+offset_right = 468.0
+offset_bottom = 281.0
+theme_override_font_sizes/font_size = 30
 text = "dealers: 0"
 
 [node name="moneypersec" type="Label" parent="labels"]
@@ -55,12 +55,23 @@ text = "money per sec:"
 [node name="addmoney" type="Timer" parent="timers"]
 autostart = true
 
-[node name="Button" type="Button" parent="."]
-offset_left = 193.0
-offset_top = 223.0
-offset_right = 300.0
-offset_bottom = 254.0
+[node name="slotmac" type="Button" parent="."]
+offset_left = 200.0
+offset_top = 359.0
+offset_right = 307.0
+offset_bottom = 390.0
 text = "slot machine"
 
+[node name="pokertable" type="Button" parent="."]
+offset_left = 197.0
+offset_top = 197.0
+offset_right = 300.0
+offset_bottom = 228.0
+text = "PokerTables"
+
+[node name="Button" type="Node2D" parent="."]
+position = Vector2(603, 246)
+
 [connection signal="timeout" from="timers/addmoney" to="." method="_on_addmoney_timeout"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="slotmac" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="pokertable" to="." method="_on_pokertable_pressed"]

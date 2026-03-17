@@ -5,14 +5,14 @@ extends Node
 var casino_name: String = "My Casino"
 
 # Money
-var money: float = 1000
-var income_per_second: float = 1
-var income_multiplier: float = 1
-var running_costs_per_second: float = 0
+var money: int = 1000
+var income_per_second: int = 55
+var income_multiplier: int = 1
+var running_costs_per_second: int = 8
 
 # License
-var license: float = 100
-var license_decay_per_minute: float = 2
+var license: int = 100
+var license_decay_per_minute: int = 2
 
 # Buildings
 var total_buildings: int = 0
@@ -23,8 +23,8 @@ var bars: int = 0
 
 # Time
 var current_day: int = 1
-var day_progress: float = 0
-var day_length_seconds: float = 120
+var day_progress: int = 0
+var day_length_seconds: int = 120
 
 # Events
 var protest_active: bool = false
