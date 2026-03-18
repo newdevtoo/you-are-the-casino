@@ -7,6 +7,7 @@ extends Node2D
 @onready var bars: Label = $labels/bar
 @onready var moneypersec: Label = $labels/moneypersec
 @onready var viplounge: Label = $labels/viplounge
+@onready var adtimer: Timer = $timers/adtimer
 
 
 func _process(delta: float) -> void:
@@ -50,13 +51,34 @@ func _on_pokertable_pressed() -> void:
 		label.text = "money: " + str(Gamemanager.money)
 
 func _on_bars_pressed() -> void:
-	if Gamemanager.money > 4999:
+	if Gamemanager.money > 4999 and Gamemanager.bar < 1:
 		Gamemanager.money -= 5000
 		Gamemanager.running_costs_per_second += 20
 		Gamemanager.bar +=1
 		Gamemanager.income_multiplier += 3
 		Gamemanager.total_buildings += 1
 		label.text = "money: " + str(Gamemanager.money)
+
+func _on_viplounge_pressed() -> void:
+	if Gamemanager.money > 499999 and Gamemanager.vip < 1:
+		Gamemanager.money -= 500000
+		Gamemanager.running_costs_per_second += 1000
+		Gamemanager.vip +=1
+		Gamemanager.income_multiplier += 15
+		Gamemanager.total_buildings += 1
+		label.text = "money: " + str(Gamemanager.money)
+
+func _on_ad_pressed() -> void:
+	if Gamemanager.money >= 1000000:
+		adtimer.hide()
+		adtimer.start()
+		Gamemanager.money -= 1000000
+		Gamemanager.income_multiplier += 25
+		label.text = "money: " + str(Gamemanager.money)
+
+func _on_adtimer_timeout() -> void:
+	Gamemanager.income_multiplier -= 25
+	label.text = "money: " + str(Gamemanager.money)
 
 
 

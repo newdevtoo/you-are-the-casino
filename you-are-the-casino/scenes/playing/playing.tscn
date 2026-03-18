@@ -59,39 +59,65 @@ theme_override_font_sizes/font_size = 30
 text = "bars:"
 
 [node name="viplounge" type="Label" parent="labels"]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 333.0
+offset_top = 420.0
+offset_right = 475.0
+offset_bottom = 462.0
+theme_override_font_sizes/font_size = 30
+text = "viplounge:0"
 
 [node name="timers" type="Node2D" parent="."]
 
 [node name="addmoney" type="Timer" parent="timers"]
 autostart = true
 
-[node name="slotmac" type="Button" parent="."]
+[node name="adtimer" type="Timer" parent="timers"]
+wait_time = 30.0
+
+[node name="buttons" type="Node2D" parent="."]
+
+[node name="slotmac" type="Button" parent="buttons"]
 offset_left = 200.0
 offset_top = 359.0
 offset_right = 307.0
 offset_bottom = 390.0
 text = "slot machine"
 
-[node name="pokertable" type="Button" parent="."]
+[node name="pokertable" type="Button" parent="buttons"]
 offset_left = 197.0
 offset_top = 197.0
 offset_right = 300.0
 offset_bottom = 228.0
 text = "PokerTables"
 
-[node name="bars" type="Button" parent="."]
+[node name="bars" type="Button" parent="buttons"]
 offset_left = 237.0
 offset_top = 305.0
 offset_right = 279.0
 offset_bottom = 336.0
 text = "bars"
 
+[node name="viplounge" type="Button" parent="buttons"]
+offset_left = 212.0
+offset_top = 430.0
+offset_right = 296.0
+offset_bottom = 461.0
+text = "viplounge"
+
+[node name="ad" type="Button" parent="buttons"]
+offset_left = 247.0
+offset_top = 242.0
+offset_right = 275.0
+offset_bottom = 273.0
+text = "ad"
+
 [node name="Button" type="Node2D" parent="."]
 position = Vector2(603, 246)
 
 [connection signal="timeout" from="timers/addmoney" to="." method="_on_addmoney_timeout"]
-[connection signal="pressed" from="slotmac" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="pokertable" to="." method="_on_pokertable_pressed"]
-[connection signal="pressed" from="bars" to="." method="_on_bars_pressed"]
+[connection signal="timeout" from="timers/adtimer" to="." method="_on_adtimer_timeout"]
+[connection signal="pressed" from="buttons/slotmac" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="buttons/pokertable" to="." method="_on_pokertable_pressed"]
+[connection signal="pressed" from="buttons/bars" to="." method="_on_bars_pressed"]
+[connection signal="pressed" from="buttons/viplounge" to="." method="_on_viplounge_pressed"]
+[connection signal="pressed" from="buttons/ad" to="." method="_on_ad_pressed"]
