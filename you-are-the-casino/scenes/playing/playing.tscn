@@ -50,6 +50,18 @@ offset_right = 557.0
 offset_bottom = 94.0
 text = "money per sec:"
 
+[node name="bar" type="Label" parent="labels"]
+offset_left = 324.0
+offset_top = 296.0
+offset_right = 396.0
+offset_bottom = 338.0
+theme_override_font_sizes/font_size = 30
+text = "bars:"
+
+[node name="viplounge" type="Label" parent="labels"]
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="timers" type="Node2D" parent="."]
 
 [node name="addmoney" type="Timer" parent="timers"]
@@ -69,9 +81,17 @@ offset_right = 300.0
 offset_bottom = 228.0
 text = "PokerTables"
 
+[node name="bars" type="Button" parent="."]
+offset_left = 237.0
+offset_top = 305.0
+offset_right = 279.0
+offset_bottom = 336.0
+text = "bars"
+
 [node name="Button" type="Node2D" parent="."]
 position = Vector2(603, 246)
 
 [connection signal="timeout" from="timers/addmoney" to="." method="_on_addmoney_timeout"]
 [connection signal="pressed" from="slotmac" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="pokertable" to="." method="_on_pokertable_pressed"]
+[connection signal="pressed" from="bars" to="." method="_on_bars_pressed"]
