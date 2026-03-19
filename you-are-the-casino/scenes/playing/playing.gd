@@ -27,10 +27,7 @@ func _input(event: InputEvent) -> void:
 		click()
 		
 
-func _on_addmoney_timeout() -> void:
-	Gamemanager.money += Gamemanager.income_per_second * Gamemanager.income_multiplier
-	Gamemanager.money -= Gamemanager.running_costs_per_second
-	label.text = "money: " + str(Gamemanager.money)
+
 
 
 
@@ -92,8 +89,26 @@ func _on_adtimer_timeout() -> void:
 	Gamemanager.income_multiplier -= 25
 	label.text = "money: " + str(Gamemanager.money)
 
+
+
+
+func _on_addmoney_timeout() -> void:
+	Gamemanager.money += Gamemanager.income_per_second * Gamemanager.income_multiplier
+	Gamemanager.money -= Gamemanager.running_costs_per_second
+	label.text = "money: " + str(Gamemanager.money)
+
 func _on_licensetimer_timeout() -> void:
 	Gamemanager.license -= Gamemanager.license_decay_per_minute
+
+
+
+func _on_adshowtimer_timeout() -> void:
+	if ad.visible:
+		ad.visible = false
+	else:
+		ad.show()
+
+
 
 
 func click():

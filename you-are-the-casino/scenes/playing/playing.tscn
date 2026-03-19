@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dk7tra5wtnpwi"]
+[gd_scene load_steps=6 format=3 uid="uid://dk7tra5wtnpwi"]
 
 [ext_resource type="Script" uid="uid://b0sj5xrvt6g6s" path="res://script/managers/gamemanager.gd" id="1_rsnxg"]
 [ext_resource type="Script" uid="uid://br80xixvdeii6" path="res://scenes/playing/playing.gd" id="1_s6t64"]
+[ext_resource type="Script" uid="uid://b8jyj5p856yap" path="res://addons/random_timer/random_timer.gd" id="3_b21gc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s6t64"]
 bg_color = Color(1, 0, 0, 1)
@@ -81,9 +82,15 @@ autostart = true
 wait_time = 30.0
 
 [node name="licensetimer" type="Timer" parent="timers"]
+wait_time = 4.0
 autostart = true
 
-[node name="adtomertoshow" type="Timer" parent="timers"]
+[node name="adshowtimer" type="Timer" parent="timers"]
+autostart = true
+script = ExtResource("3_b21gc")
+min_wait_time = 70.0
+max_wait_time = 360.0
+metadata/_custom_type_script = "uid://b8jyj5p856yap"
 
 [node name="buttons" type="Node2D" parent="."]
 
@@ -144,6 +151,7 @@ value = 100.0
 [connection signal="timeout" from="timers/addmoney" to="." method="_on_addmoney_timeout"]
 [connection signal="timeout" from="timers/adtimer" to="." method="_on_adtimer_timeout"]
 [connection signal="timeout" from="timers/licensetimer" to="." method="_on_licensetimer_timeout"]
+[connection signal="timeout" from="timers/adshowtimer" to="." method="_on_adshowtimer_timeout"]
 [connection signal="pressed" from="buttons/slotmac" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="buttons/pokertable" to="." method="_on_pokertable_pressed"]
 [connection signal="pressed" from="buttons/bars" to="." method="_on_bars_pressed"]

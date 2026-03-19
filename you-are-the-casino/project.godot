@@ -18,6 +18,10 @@ config/icon="res://icon.svg"
 
 Gamemanager="*res://script/managers/gamemanager.gd"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/random_timer/plugin.cfg")
+
 [input]
 
 clicked={
