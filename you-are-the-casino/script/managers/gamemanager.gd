@@ -18,7 +18,6 @@ var license_decay_per_minute: int = 2
 var total_buildings: int = 0
 var slot_machines: int = 2
 var poker_tables: int = 1
-var dealers: int = 0
 var bar: int = 0
 var vip: int = 0
 
