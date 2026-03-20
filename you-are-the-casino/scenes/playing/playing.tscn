@@ -42,13 +42,13 @@ offset_bottom = 214.0
 theme_override_font_sizes/font_size = 30
 text = "pokertables: 1"
 
-[node name="dealers" type="Label" parent="labels"]
-offset_left = 328.0
-offset_top = 239.0
-offset_right = 468.0
-offset_bottom = 281.0
+[node name="day" type="Label" parent="labels"]
+offset_left = 78.0
+offset_top = 163.0
+offset_right = 218.0
+offset_bottom = 205.0
 theme_override_font_sizes/font_size = 30
-text = "dealers: 0"
+text = "day until tax: 0"
 
 [node name="moneypersec" type="Label" parent="labels"]
 offset_left = 517.0
@@ -91,6 +91,10 @@ script = ExtResource("3_b21gc")
 min_wait_time = 70.0
 max_wait_time = 360.0
 metadata/_custom_type_script = "uid://b8jyj5p856yap"
+
+[node name="daytimer" type="Timer" parent="timers"]
+wait_time = 4.0
+autostart = true
 
 [node name="buttons" type="Node2D" parent="."]
 
@@ -152,6 +156,7 @@ value = 100.0
 [connection signal="timeout" from="timers/adtimer" to="." method="_on_adtimer_timeout"]
 [connection signal="timeout" from="timers/licensetimer" to="." method="_on_licensetimer_timeout"]
 [connection signal="timeout" from="timers/adshowtimer" to="." method="_on_adshowtimer_timeout"]
+[connection signal="timeout" from="timers/daytimer" to="." method="_on_daytimer_timeout"]
 [connection signal="pressed" from="buttons/slotmac" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="buttons/pokertable" to="." method="_on_pokertable_pressed"]
 [connection signal="pressed" from="buttons/bars" to="." method="_on_bars_pressed"]
