@@ -182,6 +182,7 @@ offset_bottom = 50.0
 text = "Taxing season coming"
 
 [node name="event show" type="Panel" parent="."]
+process_mode = 3
 offset_left = 451.0
 offset_top = 154.0
 offset_right = 694.0

@@ -134,22 +134,31 @@ func _on_daytimer_timeout() -> void:
 
 func _on_eventtimer_timeout() -> void:
 	choosevent = randi_range(1, 45)
+	var table = randi_range(1, 15)
+	var people = randi_range(21, 100)
 	if choosevent > 0 and choosevent < 11:
+		get_tree().paused = true
 		var randomname = Gamemanager.names[randi_range(0, Gamemanager.names.size()-1)]
 		event_show.show()
 		whatevent.text = "lawsuit"
-		description.text = "Mr " + str(randomname) + " claims he lost his house at Table 3. 
-His lawyer is very expensive."
+		description.text = "Mr " + str(randomname) + " 
+		claims he lost his house at Table " + str(table) + "
+		His lawyer is very expensive."
 	elif choosevent > 10 and choosevent < 21:
+		get_tree().paused = true
 		event_show.show()
 		whatevent.text = "Jackpot"
-		description.text = "someone won some money"
+		description.text ="table " + str(table) + ". " + str(Gamemanager.money * 0.10) + " He's crying.
+		His friends are cheering. You are not"
+		Gamemanager.money -= Gamemanager.money * 0.10
 	elif choosevent > 20 and choosevent <31:
+		get_tree().paused = true
 		event_show.show()
 		whatevent.text = "protest"
-		description.text = "there is a protest against your casino"
+		description.text = str(people) + " People with signs
+		The news van just pulled up"
 	elif  choosevent > 30 and choosevent < 41:
-		print("no events")
+		pass
 
 func click():
 	if Gamemanager.income_per_second > 1:
