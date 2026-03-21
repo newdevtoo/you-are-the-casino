@@ -176,7 +176,7 @@ offset_top = 540.0
 offset_right = 1152.0
 offset_bottom = 644.0
 
-[node name="Label" type="Label" parent="notifications"]
+[node name="notilabel" type="Label" parent="notifications"]
 layout_mode = 0
 offset_left = 4.0
 offset_top = 27.0

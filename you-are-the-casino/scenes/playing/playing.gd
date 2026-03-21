@@ -19,6 +19,7 @@ var choosevent = randi_range(1, 45)
 @onready var protest: Timer = $timers/protest
 @onready var choice_1: Button = $"event show/choice1"
 @onready var choice_2: Button = $"event show/choice2"
+@onready var notilabel: Label = $notifications/notilabel
 
 
 func _process(delta: float) -> void:
@@ -98,11 +99,27 @@ func _on_paycompilence_pressed() -> void:
 
 
 func _on_choice_1_pressed() -> void:
-	get_tree().paused = false
 	event_show.hide()
+	get_tree().paused =false
+	if choice_1.text == "ok":
+		get_tree().paused = false
+		event_show.hide()
+	if choice_1.text == "fight":
+		get_tree().paused = false
+		var lawsuit = randi_range(0,1)
+		if lawsuit == 0:
+			notifications.show()
+			notilabel.text = "you won the lawsuit!"
+		elif lawsuit == 1:
+			var moneypay = randi_range(5000, 20000)
+			Gamemanager.money -= moneypay
+			notifications.show()
+			notilabel.text = "you lost the lawsuit"
 
 
 func _on_choice_2_pressed() -> void:
+	event_show.hide()
+	get_tree().paused =false
 	if choice_2.text == "pay them off":
 		get_tree().paused =false
 		if Gamemanager.money > 999:
@@ -111,6 +128,10 @@ func _on_choice_2_pressed() -> void:
 			event_show.hide()
 			Gamemanager.license_decay_per_minute = 2
 			licensetimer.wait_time = 4
+	if choice_2.text == "settle":
+		Gamemanager.money -= Gamemanager.money * 0.40
+		get_tree().paused = false
+		event_show.hide()
 
 #timers
 func _on_adtimer_timeout() -> void:
@@ -152,6 +173,7 @@ func _on_daytimer_timeout() -> void:
 			Gamemanager.day_until_tax = 7
 	if Gamemanager.current_day == 6:
 		notifications.show()
+		notilabel.text = "Taxing season coming"
 
 func _on_eventtimer_timeout() -> void:
 	choosevent = randi_range(1, 45)
@@ -161,6 +183,9 @@ func _on_eventtimer_timeout() -> void:
 		get_tree().paused = true
 		var randomname = Gamemanager.names[randi_range(0, Gamemanager.names.size()-1)]
 		event_show.show()
+		choice_2.show()
+		choice_1.text = "fight"
+		choice_2.text = "settle"
 		whatevent.text = "lawsuit"
 		description.text = "Mr " + str(randomname) + " claims he lost 
 		his house at Table " + str(table) + "
@@ -168,17 +193,23 @@ func _on_eventtimer_timeout() -> void:
 	elif choosevent > 10 and choosevent < 21:#jackpot
 		get_tree().paused = true
 		event_show.show()
+		choice_2.hide()
+		choice_1.show()
+		choice_1.text = "ok"
 		whatevent.text = "Jackpot"
 		description.text ="table " + str(table) + ". " + str(Gamemanager.money * 0.10) + " He's crying.
 		His friends are cheering.
 		 You are not"
 		Gamemanager.money -= Gamemanager.money * 0.10
 	elif choosevent > 20 and choosevent <31:#protest
+		choice_2.show()
 		licensetimer.wait_time = 1
 		Gamemanager.license_decay_per_minute = 4
 		get_tree().paused = true
 		protest.start()
 		event_show.show()
+		choice_1.text = "ok"
+		choice_2.text = "pay them off"
 		whatevent.text = "protest"
 		description.text = str(people) + " People with signs
 		The news van just pulled up"
