@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dk7tra5wtnpwi"]
+[gd_scene load_steps=7 format=3 uid="uid://dk7tra5wtnpwi"]
 
 [ext_resource type="Script" uid="uid://b0sj5xrvt6g6s" path="res://script/managers/gamemanager.gd" id="1_rsnxg"]
 [ext_resource type="Script" uid="uid://br80xixvdeii6" path="res://scenes/playing/playing.gd" id="1_s6t64"]
+[ext_resource type="Texture2D" uid="uid://d0g8mog0fj0f7" path="res://art/Screenshot 2026-03-20 194252.png" id="2_f1fto"]
 [ext_resource type="Script" uid="uid://b8jyj5p856yap" path="res://addons/random_timer/random_timer.gd" id="3_b21gc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s6t64"]
@@ -12,6 +13,12 @@ bg_color = Color(0.427451, 1, 0, 1)
 
 [node name="playing" type="Node2D"]
 script = ExtResource("1_s6t64")
+
+[node name="backround" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(596, 330)
+scale = Vector2(2.525, 2.525)
+texture = ExtResource("2_f1fto")
 
 [node name="gamemanager" type="Node" parent="."]
 script = ExtResource("1_rsnxg")
@@ -96,6 +103,13 @@ metadata/_custom_type_script = "uid://b8jyj5p856yap"
 wait_time = 4.0
 autostart = true
 
+[node name="eventtimer" type="Timer" parent="timers"]
+autostart = true
+script = ExtResource("3_b21gc")
+min_wait_time = 2.0
+max_wait_time = 3.0
+metadata/_custom_type_script = "uid://b8jyj5p856yap"
+
 [node name="buttons" type="Node2D" parent="."]
 
 [node name="slotmac" type="Button" parent="buttons"]
@@ -167,11 +181,36 @@ offset_right = 174.0
 offset_bottom = 50.0
 text = "Taxing season coming"
 
+[node name="event show" type="Panel" parent="."]
+offset_left = 451.0
+offset_top = 154.0
+offset_right = 694.0
+offset_bottom = 345.0
+
+[node name="whatevent" type="Label" parent="event show"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = -5.0
+offset_right = 187.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 40
+text = "Broken"
+
+[node name="description" type="Label" parent="event show"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 65.0
+offset_right = 203.0
+offset_bottom = 107.0
+theme_override_font_sizes/font_size = 30
+text = "this is a bug"
+
 [connection signal="timeout" from="timers/addmoney" to="." method="_on_addmoney_timeout"]
 [connection signal="timeout" from="timers/adtimer" to="." method="_on_adtimer_timeout"]
 [connection signal="timeout" from="timers/licensetimer" to="." method="_on_licensetimer_timeout"]
 [connection signal="timeout" from="timers/adshowtimer" to="." method="_on_adshowtimer_timeout"]
 [connection signal="timeout" from="timers/daytimer" to="." method="_on_daytimer_timeout"]
+[connection signal="timeout" from="timers/eventtimer" to="." method="_on_eventtimer_timeout"]
 [connection signal="pressed" from="buttons/slotmac" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="buttons/pokertable" to="." method="_on_pokertable_pressed"]
 [connection signal="pressed" from="buttons/bars" to="." method="_on_bars_pressed"]

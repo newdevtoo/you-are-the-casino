@@ -11,6 +11,10 @@ extends Node2D
 @onready var license: ProgressBar = $license
 @onready var day: Label = $labels/day
 @onready var notifications: Panel = $notifications
+var choosevent = randi_range(1, 45)
+@onready var event_show: Panel = $"event show"
+@onready var whatevent: Label = $"event show/whatevent"
+@onready var description: Label = $"event show/description"
 
 
 func _process(delta: float) -> void:
@@ -128,6 +132,22 @@ func _on_daytimer_timeout() -> void:
 	if Gamemanager.current_day == 6:
 		notifications.show()
 
+func _on_eventtimer_timeout() -> void:
+	choosevent = randi_range(1, 45)
+	if choosevent > 0 and choosevent < 11:
+		event_show.show()
+		whatevent.text = "lawsuit"
+		description.text = "your casino has been sued"
+	elif choosevent > 10 and choosevent < 21:
+		event_show.show()
+		whatevent.text = "Jackpot"
+		description.text = "someone won some money"
+	elif choosevent > 20 and choosevent <31:
+		event_show.show()
+		whatevent.text = "protest"
+		description.text = "there is a protest against your casino"
+	elif  choosevent > 30 and choosevent < 41:
+		print("no events")
 
 func click():
 	if Gamemanager.income_per_second > 1:
