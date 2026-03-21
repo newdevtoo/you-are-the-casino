@@ -152,6 +152,21 @@ theme_override_styles/background = SubResource("StyleBoxFlat_s6t64")
 theme_override_styles/fill = SubResource("StyleBoxFlat_b21gc")
 value = 100.0
 
+[node name="notifications" type="Panel" parent="."]
+visible = false
+offset_left = 976.0
+offset_top = 540.0
+offset_right = 1152.0
+offset_bottom = 644.0
+
+[node name="Label" type="Label" parent="notifications"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 27.0
+offset_right = 174.0
+offset_bottom = 50.0
+text = "Taxing season coming"
+
 [connection signal="timeout" from="timers/addmoney" to="." method="_on_addmoney_timeout"]
 [connection signal="timeout" from="timers/adtimer" to="." method="_on_adtimer_timeout"]
 [connection signal="timeout" from="timers/licensetimer" to="." method="_on_licensetimer_timeout"]

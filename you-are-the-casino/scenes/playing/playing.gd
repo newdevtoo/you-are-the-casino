@@ -10,6 +10,7 @@ extends Node2D
 @onready var ad: Button = $buttons/ad
 @onready var license: ProgressBar = $license
 @onready var day: Label = $labels/day
+@onready var notifications: Panel = $notifications
 
 
 func _process(delta: float) -> void:
@@ -116,12 +117,16 @@ func _on_daytimer_timeout() -> void:
 	Gamemanager.current_day += 1
 	Gamemanager.day_until_tax -= 1
 	if Gamemanager.current_day == 7:
+		notifications.hide()
 		if Gamemanager.money < Gamemanager.tax:
 			Gamemanager.license -= 100
+			
 		else:
 			Gamemanager.money -= Gamemanager.tax
 			Gamemanager.current_day = 1
 			Gamemanager.day_until_tax = 7
+	if Gamemanager.current_day == 6:
+		notifications.show()
 
 
 func click():
