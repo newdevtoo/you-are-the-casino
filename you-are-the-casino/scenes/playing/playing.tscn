@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dk7tra5wtnpwi"]
+[gd_scene load_steps=7 format=3 uid="uid://dk7tra5wtnpwi"]
 
 [ext_resource type="Script" uid="uid://b0sj5xrvt6g6s" path="res://script/managers/gamemanager.gd" id="1_rsnxg"]
 [ext_resource type="Script" uid="uid://br80xixvdeii6" path="res://scenes/playing/playing.gd" id="1_s6t64"]
 [ext_resource type="Texture2D" uid="uid://d0g8mog0fj0f7" path="res://art/Screenshot 2026-03-20 194252.png" id="2_f1fto"]
 [ext_resource type="Script" uid="uid://b8jyj5p856yap" path="res://addons/random_timer/random_timer.gd" id="3_b21gc"]
-[ext_resource type="PackedScene" uid="uid://by7otwxucoa52" path="res://scenes/backroundmusic.tscn" id="5_6cuam"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s6t64"]
 bg_color = Color(1, 0, 0, 1)
@@ -187,7 +186,6 @@ text = "Taxing season coming"
 
 [node name="event show" type="Panel" parent="."]
 process_mode = 3
-visible = false
 offset_left = 366.0
 offset_top = 150.0
 offset_right = 810.0
@@ -213,15 +211,19 @@ text = "this is a bug"
 
 [node name="choice1" type="Button" parent="event show"]
 layout_mode = 0
-offset_left = 159.0
-offset_top = 164.0
-offset_right = 186.0
-offset_bottom = 195.0
+offset_left = 69.0
+offset_top = 205.0
+offset_right = 96.0
+offset_bottom = 236.0
 text = "ok"
 
-[node name="backroundmusic" parent="." instance=ExtResource("5_6cuam")]
-position = Vector2(-360, 681)
-bus = &"music"
+[node name="choice2" type="Button" parent="event show"]
+layout_mode = 0
+offset_left = 259.0
+offset_top = 205.0
+offset_right = 366.0
+offset_bottom = 236.0
+text = "pay them off"
 
 [connection signal="timeout" from="timers/addmoney" to="." method="_on_addmoney_timeout"]
 [connection signal="timeout" from="timers/adtimer" to="." method="_on_adtimer_timeout"]
@@ -237,3 +239,4 @@ bus = &"music"
 [connection signal="pressed" from="buttons/ad" to="." method="_on_ad_pressed"]
 [connection signal="pressed" from="buttons/paycompilence" to="." method="_on_paycompilence_pressed"]
 [connection signal="pressed" from="event show/choice1" to="." method="_on_choice_1_pressed"]
+[connection signal="pressed" from="event show/choice2" to="." method="_on_choice_2_pressed"]

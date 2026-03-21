@@ -17,6 +17,8 @@ var choosevent = randi_range(1, 45)
 @onready var description: Label = $"event show/description"
 @onready var licensetimer: Timer = $timers/licensetimer
 @onready var protest: Timer = $timers/protest
+@onready var choice_1: Button = $"event show/choice1"
+@onready var choice_2: Button = $"event show/choice2"
 
 
 func _process(delta: float) -> void:
@@ -29,6 +31,7 @@ func _process(delta: float) -> void:
 	day.text = "day until tax: " + str(Gamemanager.day_until_tax)
 	if license.value < 1:
 		hide()
+	
 
 #buttons
 func _input(event: InputEvent) -> void:
@@ -99,6 +102,16 @@ func _on_choice_1_pressed() -> void:
 	event_show.hide()
 
 
+func _on_choice_2_pressed() -> void:
+	if choice_2.text == "pay them off":
+		get_tree().paused =false
+		if Gamemanager.money > 999:
+			Gamemanager.money -= 1000
+			protest.stop()
+			event_show.hide()
+			Gamemanager.license_decay_per_minute = 2
+			licensetimer.wait_time = 4
+
 #timers
 func _on_adtimer_timeout() -> void:
 	Gamemanager.income_multiplier -= 25
@@ -161,10 +174,10 @@ func _on_eventtimer_timeout() -> void:
 		 You are not"
 		Gamemanager.money -= Gamemanager.money * 0.10
 	elif choosevent > 20 and choosevent <31:#protest
-		protest.start()
-		licensetimer.wait_time = 2
+		licensetimer.wait_time = 1
 		Gamemanager.license_decay_per_minute = 4
 		get_tree().paused = true
+		protest.start()
 		event_show.show()
 		whatevent.text = "protest"
 		description.text = str(people) + " People with signs
