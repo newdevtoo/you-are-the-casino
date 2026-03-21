@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://by7otwxucoa52"]
+
+[ext_resource type="AudioStream" uid="uid://d0egesr3ivahf" path="res://art/the_mountain-casino-158087.mp3" id="1_lnef3"]
+
+[node name="backroundmusic" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_lnef3")
+autoplay = true

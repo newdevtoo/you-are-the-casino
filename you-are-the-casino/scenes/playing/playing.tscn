@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dk7tra5wtnpwi"]
+[gd_scene load_steps=8 format=3 uid="uid://dk7tra5wtnpwi"]
 
 [ext_resource type="Script" uid="uid://b0sj5xrvt6g6s" path="res://script/managers/gamemanager.gd" id="1_rsnxg"]
 [ext_resource type="Script" uid="uid://br80xixvdeii6" path="res://scenes/playing/playing.gd" id="1_s6t64"]
 [ext_resource type="Texture2D" uid="uid://d0g8mog0fj0f7" path="res://art/Screenshot 2026-03-20 194252.png" id="2_f1fto"]
 [ext_resource type="Script" uid="uid://b8jyj5p856yap" path="res://addons/random_timer/random_timer.gd" id="3_b21gc"]
+[ext_resource type="PackedScene" uid="uid://by7otwxucoa52" path="res://scenes/backroundmusic.tscn" id="5_6cuam"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s6t64"]
 bg_color = Color(1, 0, 0, 1)
@@ -110,6 +111,9 @@ min_wait_time = 2.0
 max_wait_time = 3.0
 metadata/_custom_type_script = "uid://b8jyj5p856yap"
 
+[node name="protest" type="Timer" parent="timers"]
+wait_time = 50.0
+
 [node name="buttons" type="Node2D" parent="."]
 
 [node name="slotmac" type="Button" parent="buttons"]
@@ -183,28 +187,41 @@ text = "Taxing season coming"
 
 [node name="event show" type="Panel" parent="."]
 process_mode = 3
-offset_left = 451.0
-offset_top = 154.0
-offset_right = 694.0
-offset_bottom = 345.0
+visible = false
+offset_left = 366.0
+offset_top = 150.0
+offset_right = 810.0
+offset_bottom = 384.0
 
 [node name="whatevent" type="Label" parent="event show"]
 layout_mode = 0
-offset_left = 48.0
-offset_top = -5.0
-offset_right = 187.0
-offset_bottom = 50.0
+offset_left = 74.0
+offset_top = -6.0
+offset_right = 213.0
+offset_bottom = 49.0
 theme_override_font_sizes/font_size = 40
 text = "Broken"
 
 [node name="description" type="Label" parent="event show"]
 layout_mode = 0
-offset_left = 31.0
-offset_top = 65.0
-offset_right = 203.0
-offset_bottom = 107.0
+offset_left = 23.0
+offset_top = 63.0
+offset_right = 195.0
+offset_bottom = 105.0
 theme_override_font_sizes/font_size = 30
 text = "this is a bug"
+
+[node name="choice1" type="Button" parent="event show"]
+layout_mode = 0
+offset_left = 159.0
+offset_top = 164.0
+offset_right = 186.0
+offset_bottom = 195.0
+text = "ok"
+
+[node name="backroundmusic" parent="." instance=ExtResource("5_6cuam")]
+position = Vector2(-360, 681)
+bus = &"music"
 
 [connection signal="timeout" from="timers/addmoney" to="." method="_on_addmoney_timeout"]
 [connection signal="timeout" from="timers/adtimer" to="." method="_on_adtimer_timeout"]
@@ -212,9 +229,11 @@ text = "this is a bug"
 [connection signal="timeout" from="timers/adshowtimer" to="." method="_on_adshowtimer_timeout"]
 [connection signal="timeout" from="timers/daytimer" to="." method="_on_daytimer_timeout"]
 [connection signal="timeout" from="timers/eventtimer" to="." method="_on_eventtimer_timeout"]
+[connection signal="timeout" from="timers/protest" to="." method="_on_protest_timeout"]
 [connection signal="pressed" from="buttons/slotmac" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="buttons/pokertable" to="." method="_on_pokertable_pressed"]
 [connection signal="pressed" from="buttons/bars" to="." method="_on_bars_pressed"]
 [connection signal="pressed" from="buttons/viplounge" to="." method="_on_viplounge_pressed"]
 [connection signal="pressed" from="buttons/ad" to="." method="_on_ad_pressed"]
 [connection signal="pressed" from="buttons/paycompilence" to="." method="_on_paycompilence_pressed"]
+[connection signal="pressed" from="event show/choice1" to="." method="_on_choice_1_pressed"]

@@ -15,6 +15,8 @@ var choosevent = randi_range(1, 45)
 @onready var event_show: Panel = $"event show"
 @onready var whatevent: Label = $"event show/whatevent"
 @onready var description: Label = $"event show/description"
+@onready var licensetimer: Timer = $timers/licensetimer
+@onready var protest: Timer = $timers/protest
 
 
 func _process(delta: float) -> void:
@@ -91,6 +93,12 @@ func _on_paycompilence_pressed() -> void:
 		Gamemanager.license += 20
 
 
+
+func _on_choice_1_pressed() -> void:
+	get_tree().paused = false
+	event_show.hide()
+
+
 #timers
 func _on_adtimer_timeout() -> void:
 	Gamemanager.income_multiplier -= 25
@@ -136,22 +144,26 @@ func _on_eventtimer_timeout() -> void:
 	choosevent = randi_range(1, 45)
 	var table = randi_range(1, 15)
 	var people = randi_range(21, 100)
-	if choosevent > 0 and choosevent < 11:
+	if choosevent > 0 and choosevent < 11:#lawsuit
 		get_tree().paused = true
 		var randomname = Gamemanager.names[randi_range(0, Gamemanager.names.size()-1)]
 		event_show.show()
 		whatevent.text = "lawsuit"
-		description.text = "Mr " + str(randomname) + " 
-		claims he lost his house at Table " + str(table) + "
+		description.text = "Mr " + str(randomname) + " claims he lost 
+		his house at Table " + str(table) + "
 		His lawyer is very expensive."
-	elif choosevent > 10 and choosevent < 21:
+	elif choosevent > 10 and choosevent < 21:#jackpot
 		get_tree().paused = true
 		event_show.show()
 		whatevent.text = "Jackpot"
 		description.text ="table " + str(table) + ". " + str(Gamemanager.money * 0.10) + " He's crying.
-		His friends are cheering. You are not"
+		His friends are cheering.
+		 You are not"
 		Gamemanager.money -= Gamemanager.money * 0.10
-	elif choosevent > 20 and choosevent <31:
+	elif choosevent > 20 and choosevent <31:#protest
+		protest.start()
+		licensetimer.wait_time = 2
+		Gamemanager.license_decay_per_minute = 4
 		get_tree().paused = true
 		event_show.show()
 		whatevent.text = "protest"
@@ -159,6 +171,11 @@ func _on_eventtimer_timeout() -> void:
 		The news van just pulled up"
 	elif  choosevent > 30 and choosevent < 41:
 		pass
+
+func _on_protest_timeout() -> void:
+	licensetimer.wait_time = 4
+	Gamemanager.license_decay_per_minute =2
+
 
 func click():
 	if Gamemanager.income_per_second > 1:
