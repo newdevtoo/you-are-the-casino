@@ -135,9 +135,11 @@ func _on_daytimer_timeout() -> void:
 func _on_eventtimer_timeout() -> void:
 	choosevent = randi_range(1, 45)
 	if choosevent > 0 and choosevent < 11:
+		var randomname = Gamemanager.names[randi_range(0, Gamemanager.names.size()-1)]
 		event_show.show()
 		whatevent.text = "lawsuit"
-		description.text = "your casino has been sued"
+		description.text = "Mr " + str(randomname) + " claims he lost his house at Table 3. 
+His lawyer is very expensive."
 	elif choosevent > 10 and choosevent < 21:
 		event_show.show()
 		whatevent.text = "Jackpot"

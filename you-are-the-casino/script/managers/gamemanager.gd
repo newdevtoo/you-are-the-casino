@@ -28,4 +28,6 @@ var day_length_seconds: int = 60
 var day_until_tax: int = 7
 
 # Events
+var names = ["Joe", "Ram", "Gabe", "Prajit", "Harrison", "Donnovan", "Jack", "Henderson"]
 var protest_active: bool = false
+var winning_money: int = 0
