@@ -22,6 +22,8 @@ var choosevent = randi_range(1, 45)
 @onready var notilabel: Label = $notifications/notilabel
 @onready var notitimer: Timer = $timers/notitimer
 @onready var blackjack: Label = $labels/blackjack
+@onready var compilence_cost: Label = $"labels/costs/compilence cost"
+var cost = Gamemanager.total_buildings * 500
 
 
 func _process(delta: float) -> void:
@@ -33,8 +35,10 @@ func _process(delta: float) -> void:
 	license.value = Gamemanager.license 
 	day.text = "day until tax: " + str(Gamemanager.day_until_tax)
 	blackjack.text = "blackjack: " + str(Gamemanager.blackjack)
+	compilence_cost.text = str(cost)
+	cost = Gamemanager.total_buildings * 500
 	if Gamemanager.license < 1:
-		print("license " + str(Gamemanager.license))
+		print(str(Gamemanager.money) + " " + str(Gamemanager.tax))
 		hide()
 	
 
@@ -66,6 +70,7 @@ func _on_pokertable_pressed() -> void:
 		Gamemanager.poker_tables +=1
 		Gamemanager.total_buildings += 1
 		label.text = "money: " + str(Gamemanager.money)
+		
 
 func _on_bars_pressed() -> void:
 	if Gamemanager.money > 9999 and Gamemanager.bar < 1:
@@ -105,8 +110,9 @@ func _on_ad_pressed() -> void:
 
 
 func _on_paycompilence_pressed() -> void:
-	if Gamemanager.money >= 1000:
-		Gamemanager.money -= 1000
+	
+	if Gamemanager.money >= cost:
+		Gamemanager.money -= cost
 		Gamemanager.license += 20
 
 
@@ -175,13 +181,14 @@ func _on_adshowtimer_timeout() -> void:
 
 
 func _on_daytimer_timeout() -> void:
-	Gamemanager.tax = Gamemanager.total_buildings *100
+	Gamemanager.tax = Gamemanager.total_buildings * 100
 	Gamemanager.current_day += 1
 	Gamemanager.day_until_tax -= 1
 	if Gamemanager.current_day == 7:
 		notifications.hide()
 		if Gamemanager.money < Gamemanager.tax:
-			Gamemanager.license -= 100
+			Gamemanager.license -= 50
+			Gamemanager.day_until_tax = 7
 			
 		else:
 			Gamemanager.money -= Gamemanager.tax

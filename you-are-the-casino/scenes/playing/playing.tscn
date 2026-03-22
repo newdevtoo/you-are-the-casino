@@ -57,10 +57,10 @@ theme_override_font_sizes/font_size = 30
 text = "pokertables: 1"
 
 [node name="day" type="Label" parent="labels"]
-offset_left = 78.0
-offset_top = 163.0
-offset_right = 218.0
-offset_bottom = 205.0
+offset_left = 16.0
+offset_top = 109.0
+offset_right = 229.0
+offset_bottom = 151.0
 theme_override_font_sizes/font_size = 30
 text = "day until tax: 0"
 
@@ -88,6 +88,32 @@ offset_bottom = 533.0
 theme_override_font_sizes/font_size = 30
 text = "blackjack: 0"
 
+[node name="costs" type="Node2D" parent="labels"]
+
+[node name="compilence cost" type="Label" parent="labels/costs"]
+z_index = 1
+offset_left = 88.0
+offset_top = 576.0
+offset_right = 128.0
+offset_bottom = 599.0
+text = "1500"
+
+[node name="okercost" type="Label" parent="labels/costs"]
+z_index = 1
+offset_left = 280.0
+offset_top = 189.0
+offset_right = 321.0
+offset_bottom = 212.0
+text = "2,000"
+
+[node name="slotmac" type="Label" parent="labels/costs"]
+z_index = 1
+offset_left = 256.0
+offset_top = 361.0
+offset_right = 284.0
+offset_bottom = 384.0
+text = "500"
+
 [node name="timers" type="Node2D" parent="."]
 
 [node name="addmoney" type="Timer" parent="timers"]
@@ -114,8 +140,8 @@ autostart = true
 [node name="eventtimer" type="Timer" parent="timers"]
 autostart = true
 script = ExtResource("3_b21gc")
-min_wait_time = 130.0
-max_wait_time = 200.0
+min_wait_time = 70.0
+max_wait_time = 90.0
 metadata/_custom_type_script = "uid://b8jyj5p856yap"
 
 [node name="protest" type="Timer" parent="timers"]
@@ -127,39 +153,68 @@ wait_time = 3.0
 [node name="buttons" type="Node2D" parent="."]
 
 [node name="slotmac" type="Button" parent="buttons"]
-offset_left = 200.0
-offset_top = 359.0
-offset_right = 307.0
-offset_bottom = 390.0
+offset_left = 142.0
+offset_top = 357.0
+offset_right = 290.0
+offset_bottom = 388.0
 text = "slot machine"
+alignment = 0
 
 [node name="pokertable" type="Button" parent="buttons"]
-offset_left = 197.0
-offset_top = 197.0
-offset_right = 300.0
-offset_bottom = 228.0
+offset_left = 176.0
+offset_top = 184.0
+offset_right = 326.0
+offset_bottom = 215.0
 text = "PokerTables"
+alignment = 0
 
 [node name="bars" type="Button" parent="buttons"]
-offset_left = 237.0
+offset_left = 213.0
 offset_top = 305.0
-offset_right = 279.0
+offset_right = 312.0
 offset_bottom = 336.0
 text = "bars"
+alignment = 0
+
+[node name="barcost" type="Label" parent="buttons/bars"]
+z_index = 1
+offset_left = 49.0
+offset_top = 5.0
+offset_right = 99.0
+offset_bottom = 28.0
+text = "10,000"
 
 [node name="viplounge" type="Button" parent="buttons"]
-offset_left = 212.0
-offset_top = 430.0
-offset_right = 296.0
-offset_bottom = 461.0
+offset_left = 156.0
+offset_top = 431.0
+offset_right = 307.0
+offset_bottom = 462.0
 text = "viplounge"
+alignment = 0
+
+[node name="vip" type="Label" parent="buttons/viplounge"]
+z_index = 1
+offset_left = 89.0
+offset_top = 5.0
+offset_right = 149.0
+offset_bottom = 28.0
+text = "500,000"
 
 [node name="ad" type="Button" parent="buttons"]
-offset_left = 247.0
-offset_top = 242.0
-offset_right = 275.0
-offset_bottom = 273.0
+offset_left = 229.0
+offset_top = 241.0
+offset_right = 332.0
+offset_bottom = 272.0
 text = "ad"
+alignment = 0
+
+[node name="ad" type="Label" parent="buttons/ad"]
+z_index = 1
+offset_left = 28.0
+offset_top = 4.0
+offset_right = 101.0
+offset_bottom = 27.0
+text = "1,000,000"
 
 [node name="paycompilence" type="Button" parent="buttons"]
 offset_left = 4.0
@@ -169,11 +224,20 @@ offset_bottom = 585.0
 text = "Pay compilence"
 
 [node name="blackjack" type="Button" parent="buttons"]
-offset_left = 222.0
-offset_top = 502.0
-offset_right = 280.0
-offset_bottom = 533.0
+offset_left = 169.0
+offset_top = 496.0
+offset_right = 301.0
+offset_bottom = 527.0
 text = "Blackjack"
+alignment = 0
+
+[node name="blackack" type="Label" parent="buttons/blackjack"]
+z_index = 1
+offset_left = 81.0
+offset_top = 4.0
+offset_right = 154.0
+offset_bottom = 27.0
+text = "20,000"
 
 [node name="Button" type="Node2D" parent="."]
 position = Vector2(603, 246)
