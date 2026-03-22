@@ -21,6 +21,7 @@ var slot_machines: int = 2
 var poker_tables: int = 1
 var bar: int = 0
 var vip: int = 0
+var blackjack: int = 0
 
 # Time
 var current_day: int = 1

@@ -16,7 +16,7 @@ script = ExtResource("1_s6t64")
 
 [node name="backround" type="Sprite2D" parent="."]
 z_index = -100
-position = Vector2(596, 330)
+position = Vector2(571, 330)
 scale = Vector2(2.525, 2.525)
 texture = ExtResource("2_f1fto")
 
@@ -26,12 +26,19 @@ script = ExtResource("1_rsnxg")
 [node name="labels" type="Node2D" parent="."]
 
 [node name="moneylab" type="Label" parent="labels"]
-offset_left = 406.0
-offset_top = -9.0
-offset_right = 774.0
-offset_bottom = 74.0
+offset_left = 98.0
+offset_top = -12.0
+offset_right = 466.0
+offset_bottom = 71.0
 theme_override_font_sizes/font_size = 60
-text = "money: 1000"
+text = "money: 500"
+
+[node name="moneypersec" type="Label" parent="labels"]
+offset_left = 235.0
+offset_top = 77.0
+offset_right = 352.0
+offset_bottom = 100.0
+text = "money per sec:"
 
 [node name="slotsmac" type="Label" parent="labels"]
 offset_left = 319.0
@@ -57,13 +64,6 @@ offset_bottom = 205.0
 theme_override_font_sizes/font_size = 30
 text = "day until tax: 0"
 
-[node name="moneypersec" type="Label" parent="labels"]
-offset_left = 517.0
-offset_top = 71.0
-offset_right = 557.0
-offset_bottom = 94.0
-text = "money per sec:"
-
 [node name="bar" type="Label" parent="labels"]
 offset_left = 324.0
 offset_top = 296.0
@@ -79,6 +79,14 @@ offset_right = 475.0
 offset_bottom = 462.0
 theme_override_font_sizes/font_size = 30
 text = "viplounge:0"
+
+[node name="blackjack" type="Label" parent="labels"]
+offset_left = 340.0
+offset_top = 491.0
+offset_right = 465.0
+offset_bottom = 533.0
+theme_override_font_sizes/font_size = 30
+text = "blackjack: 0"
 
 [node name="timers" type="Node2D" parent="."]
 
@@ -159,6 +167,13 @@ offset_top = 554.0
 offset_right = 133.0
 offset_bottom = 585.0
 text = "Pay compilence"
+
+[node name="blackjack" type="Button" parent="buttons"]
+offset_left = 222.0
+offset_top = 502.0
+offset_right = 280.0
+offset_bottom = 533.0
+text = "Blackjack"
 
 [node name="Button" type="Node2D" parent="."]
 position = Vector2(603, 246)
@@ -243,5 +258,6 @@ text = "pay them off"
 [connection signal="pressed" from="buttons/viplounge" to="." method="_on_viplounge_pressed"]
 [connection signal="pressed" from="buttons/ad" to="." method="_on_ad_pressed"]
 [connection signal="pressed" from="buttons/paycompilence" to="." method="_on_paycompilence_pressed"]
+[connection signal="pressed" from="buttons/blackjack" to="." method="_on_dealer_pressed"]
 [connection signal="pressed" from="event show/choice1" to="." method="_on_choice_1_pressed"]
 [connection signal="pressed" from="event show/choice2" to="." method="_on_choice_2_pressed"]

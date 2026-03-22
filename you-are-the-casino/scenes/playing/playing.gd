@@ -21,6 +21,7 @@ var choosevent = randi_range(1, 45)
 @onready var choice_2: Button = $"event show/choice2"
 @onready var notilabel: Label = $notifications/notilabel
 @onready var notitimer: Timer = $timers/notitimer
+@onready var blackjack: Label = $labels/blackjack
 
 
 func _process(delta: float) -> void:
@@ -31,6 +32,7 @@ func _process(delta: float) -> void:
 	viplounge.text = "vip lounge: " + str(Gamemanager.vip)
 	license.value = Gamemanager.license 
 	day.text = "day until tax: " + str(Gamemanager.day_until_tax)
+	blackjack.text = "blackjack: " + str(Gamemanager.blackjack)
 	if Gamemanager.license < 1:
 		print("license " + str(Gamemanager.license))
 		hide()
@@ -72,6 +74,15 @@ func _on_bars_pressed() -> void:
 		Gamemanager.bar +=1
 		Gamemanager.income_multiplier += 3
 		Gamemanager.total_buildings += 1
+		label.text = "money: " + str(Gamemanager.money)
+
+func _on_dealer_pressed() -> void:#blacjack
+	if Gamemanager.money > 19999:
+		Gamemanager.money -= 20000
+		Gamemanager.running_costs_per_second += 30
+		Gamemanager.income_per_second += 150
+		Gamemanager.total_buildings += 1
+		Gamemanager.blackjack += 1
 		label.text = "money: " + str(Gamemanager.money)
 
 func _on_viplounge_pressed() -> void:
