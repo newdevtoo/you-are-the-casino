@@ -5,7 +5,7 @@ extends Node
 var casino_name: String = "My Casino"
 
 # Money
-var money: int = 20
+var money: int = 500
 var income_per_second: int = 55
 var income_multiplier: int = 1
 var running_costs_per_second: int = 8

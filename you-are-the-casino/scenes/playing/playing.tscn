@@ -106,12 +106,15 @@ autostart = true
 [node name="eventtimer" type="Timer" parent="timers"]
 autostart = true
 script = ExtResource("3_b21gc")
-min_wait_time = 2.0
-max_wait_time = 3.0
+min_wait_time = 130.0
+max_wait_time = 200.0
 metadata/_custom_type_script = "uid://b8jyj5p856yap"
 
 [node name="protest" type="Timer" parent="timers"]
 wait_time = 50.0
+
+[node name="notitimer" type="Timer" parent="timers"]
+wait_time = 3.0
 
 [node name="buttons" type="Node2D" parent="."]
 
@@ -186,6 +189,7 @@ text = "Taxing season coming"
 
 [node name="event show" type="Panel" parent="."]
 process_mode = 3
+visible = false
 offset_left = 366.0
 offset_top = 150.0
 offset_right = 810.0
@@ -232,6 +236,7 @@ text = "pay them off"
 [connection signal="timeout" from="timers/daytimer" to="." method="_on_daytimer_timeout"]
 [connection signal="timeout" from="timers/eventtimer" to="." method="_on_eventtimer_timeout"]
 [connection signal="timeout" from="timers/protest" to="." method="_on_protest_timeout"]
+[connection signal="timeout" from="timers/notitimer" to="." method="_on_notitimer_timeout"]
 [connection signal="pressed" from="buttons/slotmac" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="buttons/pokertable" to="." method="_on_pokertable_pressed"]
 [connection signal="pressed" from="buttons/bars" to="." method="_on_bars_pressed"]

@@ -20,6 +20,7 @@ var choosevent = randi_range(1, 45)
 @onready var choice_1: Button = $"event show/choice1"
 @onready var choice_2: Button = $"event show/choice2"
 @onready var notilabel: Label = $notifications/notilabel
+@onready var notitimer: Timer = $timers/notitimer
 
 
 func _process(delta: float) -> void:
@@ -30,7 +31,8 @@ func _process(delta: float) -> void:
 	viplounge.text = "vip lounge: " + str(Gamemanager.vip)
 	license.value = Gamemanager.license 
 	day.text = "day until tax: " + str(Gamemanager.day_until_tax)
-	if license.value < 1:
+	if Gamemanager.license < 1:
+		print("license " + str(Gamemanager.license))
 		hide()
 	
 
@@ -45,9 +47,9 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_button_pressed() -> void:
-	if Gamemanager.money > 499:
-		Gamemanager.money -= 500
-		Gamemanager.income_per_second += 10
+	if Gamemanager.money > 799:
+		Gamemanager.money -= 800
+		Gamemanager.income_per_second += 9
 		Gamemanager.running_costs_per_second += 1
 		Gamemanager.slot_machines +=1
 		Gamemanager.total_buildings += 1
@@ -64,8 +66,8 @@ func _on_pokertable_pressed() -> void:
 		label.text = "money: " + str(Gamemanager.money)
 
 func _on_bars_pressed() -> void:
-	if Gamemanager.money > 4999 and Gamemanager.bar < 1:
-		Gamemanager.money -= 5000
+	if Gamemanager.money > 9999 and Gamemanager.bar < 1:
+		Gamemanager.money -= 10000
 		Gamemanager.running_costs_per_second += 20
 		Gamemanager.bar +=1
 		Gamemanager.income_multiplier += 3
@@ -109,11 +111,13 @@ func _on_choice_1_pressed() -> void:
 		var lawsuit = randi_range(0,1)
 		if lawsuit == 0:
 			notifications.show()
+			notitimer.start()
 			notilabel.text = "you won the lawsuit!"
 		elif lawsuit == 1:
 			var moneypay = randi_range(5000, 20000)
 			Gamemanager.money -= moneypay
 			notifications.show()
+			notitimer.start()
 			notilabel.text = "you lost the lawsuit"
 
 
@@ -139,7 +143,8 @@ func _on_adtimer_timeout() -> void:
 	label.text = "money: " + str(Gamemanager.money)
 
 
-
+func _on_notitimer_timeout() -> void:
+	notifications.hide()
 
 func _on_addmoney_timeout() -> void:
 	Gamemanager.money += Gamemanager.income_per_second * Gamemanager.income_multiplier
@@ -153,7 +158,7 @@ func _on_licensetimer_timeout() -> void:
 
 func _on_adshowtimer_timeout() -> void:
 	if ad.visible:
-		ad.visible = false
+		ad.hide()
 	else:
 		ad.show()
 
@@ -223,7 +228,7 @@ func _on_protest_timeout() -> void:
 
 func click():
 	if Gamemanager.income_per_second > 1:
-		Gamemanager.money += Gamemanager.income_per_second/2 * Gamemanager.income_multiplier
+		Gamemanager.money += Gamemanager.income_per_second * 0.05
 	else:
 		Gamemanager.money += 1
 	label.text = "money: " + str(Gamemanager.money)
